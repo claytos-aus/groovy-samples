@@ -13,9 +13,6 @@ String allButLast(String s) {
   return s[0..t]
 }
 
-void dump(Integer n, String s) {
-  dump(n.toString(), s)
-}
 // simple
 void dump(def n, String s) {
   def s2 = allButLast(s)

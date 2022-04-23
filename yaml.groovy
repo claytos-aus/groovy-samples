@@ -14,7 +14,7 @@ def allButLast(String s) {
 }
 
 // simple
-def dump(n, String s) {
+def dump(String n, String s) {
   def s2 = allButLast(s)
   println "$s2=$n"
 }

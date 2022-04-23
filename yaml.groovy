@@ -13,34 +13,37 @@ def allButLast(String s) {
   return s[0..t]
 }
 
-def dump_simple(n, String s) {
+// simple
+def dump(n, String s) {
   def s2 = allButLast(s)
   println "$s2=$n"
 }
 
-def dump_list(List n, String s) {
+// list
+def dump(List n, String s) {
   n.eachWithIndex { it, i ->
     if (it instanceof Map) {
-      dump_map(it,s)
+      dump(it,s)
     } else if (it instanceof List) {
-      dump_list(it,s)
+      dump(it,s)
     } else {
       def s2 = allButLast(s)
-      dump_simple(it,"${s2}[${i}]]")
+      dump(it,"${s2}[${i}]]")
     }
   }
 }
 
-def dump_map(Map n, String s) {
+// map
+def dump(Map n, String s) {
   assert n instanceof Map
   n.each { k,v ->
     s += "$k."
     if (v instanceof Map) {
-      dump_map(v, s)
+      dump(v, s)
     } else if (v instanceof List) {
-      dump_list(v,s)
+      dump(v,s)
     } else {
-      dump_simple(v,s)
+      dump(v,s)
     }
   }
 }
@@ -48,10 +51,10 @@ def dump_map(Map n, String s) {
 // start here
 nodes.each { k, v ->
   if (v instanceof Map) {
-    dump_map(v, "$k.")
+    dump(v, "$k.")
   } else if (v instanceof List) {
-    dump_list(v, "$k.")
+    dump(v, "$k.")
   } else {
-    dump_simple(v, "$k.")
+    dump(v, "$k.")
   }
 }

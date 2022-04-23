@@ -8,19 +8,22 @@ def yaml = new YamlSlurper()
 def nodes = yaml.parse(new FileInputStream(FileDescriptor.in))
 
 // strip last char
-def allButLast(String s) {
+String allButLast(String s) {
   def t = s.length()-2
   return s[0..t]
 }
 
+void dump(Integer n, String s) {
+  dump(n.toString(), s)
+}
 // simple
-def dump(String n, String s) {
+void dump(def n, String s) {
   def s2 = allButLast(s)
   println "$s2=$n"
 }
 
 // list
-def dump(List n, String s) {
+void dump(List n, String s) {
   n.eachWithIndex { it, i ->
     if (it instanceof Map || it instanceof List) {
       dump(it,s)
@@ -32,7 +35,7 @@ def dump(List n, String s) {
 }
 
 // map
-def dump(Map n, String s) {
+void dump(Map n, String s) {
   n.each { k,v ->
     s += "$k."
     dump(v,s)

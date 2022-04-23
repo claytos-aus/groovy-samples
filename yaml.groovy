@@ -26,7 +26,7 @@ void dump(List n, String s) {
       dump(it,s)
     } else {
       def s2 = allButLast(s)
-      dump(it,"${s2}[${i}]]")
+      it == null ? dump("","${s2}[${i}]]") : dump(it,"${s2}[${i}]]")
     }
   }
 }
@@ -34,7 +34,7 @@ void dump(List n, String s) {
 // map
 void dump(Map n, String s) {
   n.each { k,v ->
-    dump(v,"$s$k.")
+    v == null ? dump("","$s$k.") : dump(v,"$s$k.")
   }
 }
 

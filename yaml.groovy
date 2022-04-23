@@ -34,8 +34,7 @@ void dump(List n, String s) {
 // map
 void dump(Map n, String s) {
   n.each { k,v ->
-    s += "$k."
-    dump(v,s)
+    dump(v,"$s$k.")
   }
 }
 

@@ -22,9 +22,7 @@ def dump(String n, String s) {
 // list
 def dump(List n, String s) {
   n.eachWithIndex { it, i ->
-    if (it instanceof Map) {
-      dump(it,s)
-    } else if (it instanceof List) {
+    if (it instanceof Map || it instanceof List) {
       dump(it,s)
     } else {
       def s2 = allButLast(s)
@@ -35,26 +33,13 @@ def dump(List n, String s) {
 
 // map
 def dump(Map n, String s) {
-  assert n instanceof Map
   n.each { k,v ->
     s += "$k."
-    if (v instanceof Map) {
-      dump(v, s)
-    } else if (v instanceof List) {
-      dump(v,s)
-    } else {
-      dump(v,s)
-    }
+    dump(v,s)
   }
 }
 
 // start here
 nodes.each { k, v ->
-  if (v instanceof Map) {
-    dump(v, "$k.")
-  } else if (v instanceof List) {
-    dump(v, "$k.")
-  } else {
-    dump(v, "$k.")
-  }
+  dump(v, "$k.")
 }

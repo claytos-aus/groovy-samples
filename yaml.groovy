@@ -23,7 +23,9 @@ void dump(def n, String s) {
 void dump(List n, String s) {
   n.eachWithIndex { it, i ->
     if (it instanceof Map || it instanceof List) {
-      dump(it,s)
+      // dump(it,s)
+      def s2 = allButLast(s)
+      dump(it,"${s2}[${i}].")
     } else {
       def s2 = allButLast(s)
       it == null ? dump("","${s2}[${i}]]") : dump(it,"${s2}[${i}]]")

@@ -41,6 +41,14 @@ void dump(Map n, String s) {
 }
 
 // start here
-nodes.each { k, v ->
-  dump(v, "$k.")
+if (nodes instanceof Map) {
+  nodes.each { k, v ->
+    dump(v, "$k.")
+  }
+} else if (nodes instanceof List){
+  nodes.eachWithIndex { it, i ->
+    dump(it,"[$i].")
+  }
+} else {
+  println "what are you man!"
 }
